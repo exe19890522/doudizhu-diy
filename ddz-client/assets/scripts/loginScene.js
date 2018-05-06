@@ -25,13 +25,11 @@ cc.Class({
     // onLoad () {},
 
     start () {
-		let socket = io("localhost:3000");
+		let socket = io("http://localhost:3000");
 		socket.on('welcome',(data)=>{
-		    console.log('welcome' + data);
-        });
-
-        ),
-    }
+			console.log('welcome' + data);
+		});
+    },
 
     // update (dt) {},
 });
