@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "ce8bcb77-708c-482c-bd83-e1a5962329fa",
+    "_id": "43e1db96-6c0b-4c09-ac4d-a89ae7971eb9",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -1102,6 +1102,7 @@
     "_fitHeight": true
   },
   {
+    "__type__": "e674fvSgt1IBbmcNvpbZJhF",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1120,7 +1121,11 @@
     "headImage": {
       "__id__": 19
     },
-    "createRoomPrefab": null,
-    "joinRoomPrefab": null
+    "createRoomPrefab": {
+      "__uuid__": "d4c274ae-8764-4835-8b60-5f18a1c888c9"
+    },
+    "joinRoomPrefab": {
+      "__uuid__": "59919f68-2794-4e6c-bc8f-8f88789c22b5"
+    }
   }
 ]

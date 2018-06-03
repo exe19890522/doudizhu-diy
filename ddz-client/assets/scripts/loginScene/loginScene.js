@@ -1,4 +1,5 @@
 import global from './../global'
+//const global = require ('./../global');
 cc.Class({
     extends: cc.Component,
 
@@ -8,7 +9,9 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    // onLoad () {},Simulator: E/jswrapper (267): ERROR: Uncaught SyntaxError: Unexpected token import, location: G:/doudizhumayun/trunk/ddz-client/assets/scripts/global.js:0:0
+//Simulator: E/jswrapper (267): ERROR: Uncaught SyntaxError: Unexpected token export, location: G:/doudizhumayun/trunk/ddz-client/assets/scripts/global.js:0:0
+//Cannot read property 'socket' of null
 
     start () {
         // let socket = io("http://localhost:3000");
