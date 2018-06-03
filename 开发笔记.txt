@@ -67,7 +67,54 @@
     代码，并设置属性 LabelNode : cc.Node,  再次更新joinRoom.js代码；
     7.4加入房间服务器：更新代码：joinRoom.js game-controller.js player.js socket-controller.js
     7.5显示规则：客户端新建gameScene场景，在脚本目录中新建gameScene\gameScene.js ，打开gameScene场景调整分辨率，
-    导入背景图片，新建一个空节点Labels，在其中新建
+    导入背景图片，新建一个空节点Labels，在其中新建roomidLabel、bottomLabel、rateLabel，更新gameScene.js代码，
+    7.6座位排序规则：在gameScene场景canvas下新建playernode空节点，拖入一张背景图和玩家头像图片，新建空节点headimage、
+    新建文字节点nicknameLabel、idLabel、goldLabel，并保存为playernode预制件，在scripts/gameScene/prefabs下新建
+    playernode.js脚本，更新代码，再更新gameScene、room代码，新建playerPosNode空节点，在playerPosNode节点下新建3个空节点，
+    并重命名为node1~3再拖放到合适位置，更新gameScene代码,
+    7.7玩家准备：更新player、gameScene、room代码，将准备和离线图片拖放到客户端ui文件夹，再拖放到playerNode预制件，
+    更新playernode代码并绑定节点；在gamescene场景中canvas下新建gameBeforUI空节点，将准备和开始按钮图片拖放至gameBeforUI
+    空节点，在gameScene下新建gameBeforUI.js脚本，更新代码,给准备按钮添加按钮点击事件：拖放canvas、gameBeforUI、onbuttonclick，
+    绑定gameBeforUI.js脚本到gameScene的canvas上，再绑定准备和开始节点，更新socket-controller.js、gameBeforUI.js脚本代码，
+    再给开始按钮添加按钮点击事件：拖放canvas、gameBeforUI、onbuttonclick，更新player、gameScene、room代码，
+    切换房主的操作隐含在更新socket-controller.js、gameBeforUI.js、room.js脚本代码中了
+    7.8房间状态机：更新room代码;修复开始游戏后玩家头像上的准备标示：更新gameScene、playernode、room代码；
+8.发牌系统：在服务端game目录下新建card.js、carder.js脚本，更新代码，再更新room、player、socket-controller代码,
+    8.1在客户端gamescene中新建一个空节点gameingUI，并在gameScene目录下新建gameingUI.js脚本，绑定并更新gameingUI脚本，
+    将客户端中的gameingUI节点绑定到canvas属性的gameBeforUI脚本属性中的gameingUI属性，在gameingUI空节点下新建card空节点，
+    将card.png、card.plist拖放到客户端资源目录中，在客户端新建gameScene/Prefab/card.js脚本并绑定到card空节点的属性，
+    拖放card为预制件并在层级管理器中删除该节点，更新Prefab/card.js脚本代码,拖放card.plist到card预制件的cardsSpriteAtlas属性中，
+    在card预制件的属性中添加Sprite组件，拖放card.plist中的card_55到Sprite组件的Sprite Frame属性中，更新Prefabs/card.js代码,
+    更新Prefabs/card.js、game/card.js、gameingUI.js、carder.js 代码，把洗牌后的牌分配到玩家手里；
+    8.2将服务端发来的牌组信息在客户端显示出来：更新Prefabs/card.js代码，更新Prefabs/card.js、game/card.js、gameingUI.js、carder.js 代码,
+    再将客户端显示的牌组重新排序：更新gameingUI.js代码，
+    8.3在其他玩家头像附近显示牌的背面：在player_node节点中新建cardNode空节点并摆放到合适位置，再设置为隐藏状态，
+    更新player_node代码，再将cardnode节点绑定到player_node属性，在更新player_node代码,再绑定card预制件到player_node属性，
+    再更新player_node、gameScene代码,三张底牌操作：更新gameingUI.js代码
+    8.4抢地主操作：在客户端层级管理器中gameingUI下新建robUI空节点，导入相关图片到客户端资源目录，调整robUI的位置以及相关
+    资源的位置，再在gameingUI下新建label节点用于显示倒计时，调整一下位置，更新gameingUI.js代码，给抢和不抢图片添加相应的
+    点击事件，更新socket-controller.js和gameingUI.js代码，以完成对服务端告知玩家抢与不抢的通知，
+    8.5轮番下发抢地主的消息：更新gameingUI.js、socket-controller、player_node、gameScene代码，在player_node预制件下，
+    新建infoNode空节点并设置隐藏，在infoNode下新建label节点tipslabel：正在抢地主，拖放clock资源到infoNode下，
+    调整clock和tipslabel的位置，再在clock下新建timelabel，绑定相关资源到player_node属性，更新player_node代码，
+    更新gameingUI.js、socket-controller、player_node、gameScene代码；
+    8.6处理抢地主的细节：更新gameingUI、player_node代码，拖放 抢 与 不抢 的图片到客户端ui文件夹下，在player_node预制件下
+    新建精灵robIconSP并调整位置且隐藏，绑定robIconSP、抢 与 不抢 的图片到player_node属性，更新gameScene、player_node、
+    socket-controller代码,robIconSP精灵属性中的 SpriteFrame ,点红叉取消掉
+    8.7确定地主：更新gameScene、player_node、player、room、socket-controller代码,导入代表地主标识的资源masterIcon到
+    客户端并调整位置，绑定masterIcon到player_node属性并设置隐藏，更新player_node代码,
+    8.8把三张底牌加给地主：更新gameingUI、gameScene、player_node、room代码，在客户端中调整三个玩家的位置和牌的位置，
+9出牌操作：在客户端gamescene中新建一个playUI空节点，再拖动按钮图片nopush到他下面，更改该图片的type属性为sliced，
+    添加按钮事件，在noPushCardButton下新建label节点“不出”，同理操作PushCardButton和tipButton，修改默认的label值，
+    再导入时钟资源并新建label节点“9”，再设置playUI节点为隐藏，更新gameUI脚本并绑定到gamescene的canvas上，
+    9.1服务端轮流下发出牌逻辑：更新gameingUI、room、player，prefabs/card、socket-controller脚本；
+    9.2重新排序地主牌,点击牌：更新gameingUI、prefabs/card脚本；
+    9.3选中牌再出牌：更新socket-controller、gameingUI脚本，客户端新建一个tipsLabel绑定到canvas属性，
+    更新carder、room、player、socket-controller脚本，
+    9.4出牌及牌型判断和对比：更新carder、room脚本,客户端中
+
+
+
 
 
 
