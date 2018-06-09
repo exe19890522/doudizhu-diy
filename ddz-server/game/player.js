@@ -100,7 +100,7 @@ module.exports = function (spec, socket, cbIndex, gameContorller) {
                 }
                 break;
 
-        case 'player_push_card':
+        case 'myself_push_card':
             if (_room){
                 _room.playerPushCard(that, notifyData.data, (err, data)=>{
                     if (err){
@@ -171,6 +171,7 @@ module.exports = function (spec, socket, cbIndex, gameContorller) {
         if (accountID === that.accountID){
             let cards = data.cards;
             for (let i = 0 ; i < cards.length ; i ++){
+                //需要删掉的卡牌
                 let card = cards[i];
                 for (let j = 0 ; j < that.cards.length ; j ++){
                     if (card.id === that.cards[j].id){

@@ -188,9 +188,10 @@ module.exports = function (spec, player) {
                     if (cb) {
                         cb(null, 'push card success');
                     }
+                    sendPlayerPushCard(player,cards);
                     turnPushCardPlayer();
                 } else {
-
+                    //
                 }
             }else{
                 if (cb) {
@@ -199,7 +200,12 @@ module.exports = function (spec, player) {
             }
         }
     };
-
+    //服务端下发玩家出的牌
+    const sendPlayerPushCard = function(player,cards){
+        for (let i = 0; i < _playerList.length; i++) {
+            _playerList[i].sendPlayerPushCard()
+        }
+    };
     that.playerRobStateMaster = function (player,value) {
         if (value === 'ok'){
             console.log('rob master ok');
