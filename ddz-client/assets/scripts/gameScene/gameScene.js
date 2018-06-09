@@ -79,6 +79,12 @@ cc.Class({
                  }
              }
          });
+         global.socket.onPlayerPushCard((data)=>{
+             console.log('player push card =' + JSON.stringify(data));
+             for (let i = 0 ; i < this.playerNodeList.length ; i ++){
+                 this.playerNodeList[i].emit('player_push_card',data);
+             }
+         });
          //监听添加底牌到手牌
          this.node.on('add_card_to_player',()=>{
             if (global.playerData.accountID !== global.playerData.masterID){

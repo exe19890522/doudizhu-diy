@@ -58,7 +58,7 @@ const SocketController  = function () {
     };
     //玩家出牌
     that.requestPlayerPushCard = function(value,cb){
-        request('player_push_card',value,cb);
+        request('myself_push_card',value,cb);
     };
 
     that.notifyReady = function(){
