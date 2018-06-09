@@ -38,3 +38,5 @@ const EventListener = function (obj) {
 
     return obj;
 };
+
+export default EventListener;

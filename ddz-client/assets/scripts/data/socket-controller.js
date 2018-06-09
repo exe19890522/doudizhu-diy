@@ -1,4 +1,5 @@
-import EventListener from './../utility/event-listener';
+//import EventListener from './../utility/event-listener';
+const EventListener = require('./../utility/event-listener');
 const SocketController  = function () {
     let that = {};
     let _socket = io(defines.serverUrl);

@@ -53,13 +53,10 @@
     "_components": [
       {
         "__id__": 42
-      },
-      {
-        "__id__": 43
       }
     ],
     "_prefab": {
-      "__id__": 44
+      "__id__": 43
     },
     "_id": "",
     "_opacity": 255,
@@ -650,6 +647,7 @@
       "__id__": 14
     },
     "cardsNode": null,
+    "pushCardNode": null,
     "cardPrefab": null,
     "tipsLabel": null,
     "infoNode": null,
@@ -1334,60 +1332,6 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": null
-  },
-  {
-    "__type__": "2f686HITY5Bk44dRfdiGUW3",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "headImage": {
-      "__id__": 3
-    },
-    "idLabel": {
-      "__id__": 9
-    },
-    "nickNameLabel": {
-      "__id__": 6
-    },
-    "goldLabel": {
-      "__id__": 12
-    },
-    "readyIcon": {
-      "__id__": 17
-    },
-    "offlineIcon": {
-      "__id__": 14
-    },
-    "cardsNode": {
-      "__id__": 21
-    },
-    "cardPrefab": {
-      "__uuid__": "974f2af2-4418-4503-8f0e-56303eaa4342"
-    },
-    "tipsLabel": {
-      "__id__": 25
-    },
-    "infoNode": {
-      "__id__": 23
-    },
-    "timeLabel": {
-      "__id__": 29
-    },
-    "robIconSp": {
-      "__id__": 35
-    },
-    "masterIcon": {
-      "__id__": 38
-    },
-    "robIcon": {
-      "__uuid__": "12f239ce-54bf-4f93-be39-d8e5ccebabeb"
-    },
-    "noRobIcon": {
-      "__uuid__": "b3e0d3c0-54d7-4722-8482-3597c5f05bf0"
-    }
   },
   {
     "__type__": "cc.PrefabInfo",

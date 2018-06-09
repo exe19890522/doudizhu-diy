@@ -1,5 +1,5 @@
-import global from "../../global";
-
+//import global from './../global';
+const global = require("./../../global");
 cc.Class({
     extends: cc.Component,
 
@@ -178,13 +178,14 @@ cc.Class({
     },
 
     //重新调整牌的位置
-    referCardPos(){
-        for (let i = 0 ; i < this.cardList.length ; i ++){
+    referCardPos() {
+        for (let i = 0; i < this.cardList.length; i++) {
             let card = this.cardList[i];
             let height = card.height;
             card.y = (this.cardList.length - 1) * 0.5 * height * 0.4 * 0.3 - height * 0.4 * 0.3 * i;
 
         }
+    }
 });
 
 

@@ -87,7 +87,7 @@ cc.Class({
                 //     this.playerNodeList[i].emit('player_push_card',data);
                 // }
 
-        };
+        });
 
         //做的牌显示特效：
         this.node.on('master-pos',(event)=>{
