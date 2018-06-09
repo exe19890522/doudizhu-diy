@@ -78,14 +78,14 @@
       },
       {
         "__id__": 72
+      },
+      {
+        "__id__": 74
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
-      {
-        "__id__": 74
-      },
       {
         "__id__": 75
       },
@@ -94,6 +94,9 @@
       },
       {
         "__id__": 77
+      },
+      {
+        "__id__": 78
       }
     ],
     "_prefab": null,
@@ -2957,6 +2960,54 @@
     "_N$overflow": 0
   },
   {
+    "__type__": "cc.Node",
+    "_name": "pushCardNode",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [],
+    "_prefab": null,
+    "_id": "80ZKKW231KwohPtZRvbOUJ",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -100
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -3044,10 +3095,8 @@
       "__id__": 72
     },
     "pushCardNode": {
-      "__id__": 62
+      "__id__": 74
     },
-    "noPushCardButton": {
-      "__id__": 50
-    }
+    "noPushCardButton": null
   }
 ]
