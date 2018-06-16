@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "1fc2abf9-9baa-4a92-acdb-4d3b668ace42",
+    "_id": "bd9838e5-3e46-4ff6-8251-abde507a534e",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": null
+    "autoReleaseAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -170,7 +170,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "a2ea10c1-7481-4003-bcc4-a6a18c944e16"
+      "__uuid__": "bc4b6ba9-aed3-4811-80c5-209806af3384"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -251,7 +251,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "530b56d8-05eb-4ac4-bbf5-4da515d148fb"
+      "__uuid__": "be2c399e-f365-46d6-9d8a-8418ab7f4c85"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -293,8 +293,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.1,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 8
@@ -317,6 +315,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 5
@@ -327,7 +329,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "cc.Canvas",
+    "component": "loginScene",
     "handler": "onButtonClick",
     "customEventData": "wxLogin"
   },
@@ -348,7 +350,7 @@
     "_fitHeight": true
   },
   {
-    "__type__": "e266eDQX+1KDrhVSxyNCXHL",
+    "__type__": "76dd6PNcMFAbZFNepKq6MTP",
     "_name": "",
     "_objFlags": 0,
     "node": {
