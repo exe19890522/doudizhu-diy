@@ -19,7 +19,7 @@ cc.Class({
         this.goldCountLabel.string = global.playerData.goldCount;
 
         cc.loader.load({url:global.playerData.avatarUrl,type:'jpg'},(err,tex)=>{
-            cc.log('should load a texture from RESTful API by specify the type:' + (tex instanceof cc.texture2D));
+
             //以下是对头像图片的缩放处理以适应背景框的大小
             let oldWidth = this.headImage.node.width;
             console.log('');

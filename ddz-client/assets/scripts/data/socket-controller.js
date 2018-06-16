@@ -1,18 +1,22 @@
-//import EventListener from './../utility/event-listener';
-const EventListener = require('./../utility/event-listener');
+import EventListener from './../utility/event-listener'
 const SocketController  = function () {
     let that = {};
     let _socket = io(defines.serverUrl);
     let _callBackMap = {};
     let _callBackIndex = 0;
     let _event = EventListener({});
-    _socket.on('notify',(data)=>{
-        console.log('notify = ' + JSON.stringify(data));
+    // socket.on('connection', ()=>{
+    //    console.log('链接成功');
+    // });
+    //
+
+    _socket.on('notify', (data)=>{
+        console.log('S-C:notify = ' + JSON.stringify(data));
         let callBackIndex = data.callBackIndex;
         if (_callBackMap.hasOwnProperty(callBackIndex)){
             let cb = _callBackMap[callBackIndex];
             if (data.data.err){
-                cb(data.err);
+                cb(data.data.err);
             }else {
                 cb(null,data.data);
             }
@@ -28,12 +32,11 @@ const SocketController  = function () {
     // that.requestwxLogin =function (data,cb) {
     //     socket.emit('wx-login',data);
     // };
-
-    const notify = function (type,data,callBackIndex) {
+    const notify = function (type, data, callBackIndex) {
         _socket.emit('notify',{type:type,data:data,callBackIndex:callBackIndex});
     };
     //实现一个request请求 保存了_callBackIndex和cb，再通过notify来发送
-    const request = function (type,data,cb) {
+    const request = function (type,data, cb) {
         _callBackIndex ++;
         _callBackMap[_callBackIndex] = cb;
         notify(data,_callBackIndex);
@@ -44,7 +47,7 @@ const SocketController  = function () {
     };
 
     that.requestCreateRoom = function (data,cb) {
-        request('create_room',data,cb);
+        request('create_room', data, cb);
     };
 
     that.requestJoinRoom = function (data,cb) {
@@ -54,11 +57,11 @@ const SocketController  = function () {
     that.requestEnterRoomScene = function (cb) {
         request('enter_room_scene',{},cb);
     };
-    that.requestStartGame = function(cb){
+    that.requestStartGame = function(cb) {
         request('start_game',{},cb);
     };
     //玩家出牌
-    that.requestPlayerPushCard = function(value,cb){
+    that.requestPlayerPushCard = function(value,cb) {
         request('myself_push_card',value,cb);
     };
 
@@ -71,7 +74,7 @@ const SocketController  = function () {
     };
 
 
-    that.onPlayerJoinRoom = function () {
+    that.onPlayerJoinRoom = function (cb) {
         _event.on('player_join_room',cb);
     };
     that.onPlayerReady = function (cb) {
@@ -83,16 +86,16 @@ const SocketController  = function () {
     that.onChangeHouseManager = function (cb) {
         _event.on('change_house_manager',cb);
     };
-    that.onPushCard = function (cb){
+    that.onPushCard = function (cb) {
         _event.on('push_card',cb);
     };
-    that.onCanRobMaster = function () {
+    that.onCanRobMaster = function (cb) {
         _event.on('can_rob_master',cb);
     };
-    that.onPlayerRobState =function () {
+    that.onPlayerRobState =function (cb) {
         _event.on('player_rob_state',cb);
     };
-    that.onChangeMaster =function () {
+    that.onChangeMaster =function (cb) {
         _event.on('change_master',cb);
     };
     that.onShowBottomCard = function (cb) {

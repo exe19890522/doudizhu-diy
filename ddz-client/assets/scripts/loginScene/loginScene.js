@@ -7,12 +7,6 @@ cc.Class({
 
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},Simulator: E/jswrapper (267): ERROR: Uncaught SyntaxError: Unexpected token import, location: G:/doudizhumayun/trunk/ddz-client/assets/scripts/global.js:0:0
-//Simulator: E/jswrapper (267): ERROR: Uncaught SyntaxError: Unexpected token export, location: G:/doudizhumayun/trunk/ddz-client/assets/scripts/global.js:0:0
-//Cannot read property 'socket' of null
-
     start () {
         // let socket = io("http://localhost:3000");
         // socket.on('welcome', (data)=>{
@@ -20,11 +14,11 @@ cc.Class({
         // });
         global.socket.init();
         global.eventListener.on('test', (data)=>{
-            console.log('test success' + data);
+            console.log('test success ' + data);
         });
         //下面一段代码只是再一次验证test，没什么意义
         global.eventListener.on('test', (data)=>{
-            console.log('test 1 sucess' + data);
+            console.log('test 1 sucess ' + data);
         });
         global.eventListener.fire('test', 'ok');
     },
@@ -32,14 +26,16 @@ cc.Class({
     onButtonClick(event,customData){
         switch(customData){
             case 'wxLogin':
-                console.log('微信登陆');
+                console.log('loginS:微信登陆');
                 global.socket.requestLogin({
-                    uniqueID:global.playData.uniqueID,
-                    accountID:global.playData.accountID,
-                    nickName:global.playData.nickName,
-                    avatarUrl:global.playData.avatarUrl
+                    uniqueID:global.playerData.uniqueID,
+                    accountID:global.playerData.accountID,
+                    nickName:global.playerData.nickName,
+                    avatarUrl:global.playerData.avatarUrl
                 },(err,result)=>{
                     //到这一步后即实现了一个具有回调功能的请求
+                    cc.director.loadScene('hallScene');  //进入大厅
+                    console.log('loadScene2 = ');
                     if (err) {
                         console.log('err = ' + err);
                     }else{

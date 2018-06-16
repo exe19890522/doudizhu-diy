@@ -64,18 +64,6 @@
     "groupIndex": 0
   },
   {
-    "__type__": "415c8397lFGXIXBYU3Q9qmd",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "cardsSpriteAtlas": {
-      "__uuid__": "10edc096-cd19-45f1-82c9-2aee4a427c37"
-    }
-  },
-  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -83,9 +71,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "967d52f9-586c-4bf9-afc2-6151391a940b"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -99,8 +85,18 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "10edc096-cd19-45f1-82c9-2aee4a427c37"
+    "_atlas": null
+  },
+  {
+    "__type__": "66e0cu6iFVCC4gZqGPuRit3",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "cardsSpriteAtlas": {
+      "__uuid__": "1ee974c6-7532-4c75-a537-df4f143a94e2"
     }
   },
   {
@@ -109,7 +105,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "974f2af2-4418-4503-8f0e-56303eaa4342"
+      "__uuid__": "3e1f8830-3d64-4c9f-91cc-6fe9d3f12959"
     },
     "fileId": "e0MHd92YJHR6e+XJx1UFIz",
     "sync": false

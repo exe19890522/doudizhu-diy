@@ -1,6 +1,5 @@
 const EventListener = function (obj) {
     //const that ={};
-
     let Register ={};
     //如果注册表中有这个type就把方法push一下
     obj.on = function (type, method) {
