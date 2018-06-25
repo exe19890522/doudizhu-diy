@@ -1,6 +1,9 @@
 const socket = require('socket.io');
 const app = socket(3000);
 const myDB = require('./db');
+const defines = require('./defines');
+const gameController = require('./game/game-controller');
+console.log('defines = ' + defines.defaultGoldCount);
 myDB.connect({
     "host":"127.0.0.1",
     "port":3306,
@@ -20,23 +23,25 @@ myDB.getPlayerInfoWithAccountID('10000',(err, data)=>{
 });*/
 
 app.on('connection', function (socket) {
-    console.log('a  user connection');
+    console.log('a  user has connect');
     socket.emit('connection','connection success');
-    socket.on('notify',(data)=>{
-        console.log('notify = ' + JSON.stringify(data));
+    socket.on('notify',(notifyData)=>{
+        console.log('app.js:notify = ' + JSON.stringify(notifyData));
         //socket.emit('notify',{callBackIndex:data.callBackIndex,data:'login success'});
-
-        switch (data.type) {
-            case 'login':
-                let uniqueID = data.data.uniqueID;
-                let callBackIndex = data.callBackIndex;
+        let uniqueID = notifyData.data.uniqueID;
+        console.log('app.js:1111uniqueID = '+uniqueID);
+        switch (notifyData.type) {
+            case 'login': //login
+                let uniqueID = notifyData.data.uniqueID;
+                console.log('app.js:222uniqueID = '+uniqueID + "rate:" + notifyData.data.rate);
+                let callBackIndex = notifyData.callBackIndex;
                 myDB.getPlayerInfoWithUniqueID(uniqueID, (err, data) => {
                     if (err) {
                         console.log('err =  ' + err);
                     } else {
                         console.log('data =  ' + JSON.stringify(data));
                         if (data.length === 0) {
-                            let loginData = data.data;
+                            let loginData = notifyData.data;
                             myDB.createPlayerInfo(
                                 loginData.uniqueID,
                                 loginData.accountID,
@@ -67,6 +72,7 @@ app.on('connection', function (socket) {
             default:
                 break;
         }
+        //console.log('app.js:notify = ++++++++');
     });
 });
 

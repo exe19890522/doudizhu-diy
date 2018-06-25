@@ -1,15 +1,15 @@
 const mysql = require('mysql');
 let client = undefined;
-const query =function (sql,cb){
-    mysql.getConnection((err,connection)=>{
-        if(err){
+const query =function (sql,cb) {
+    client.getConnection((err,connection) => {
+        if(err) {
             console.log('get connection = ' + err);
             if(cb){
                 cb(err);
             }
         }else {
-            connection.query(sql,(connErr,result)=>{
-                if(connErr){
+            connection.query(sql,(connErr,result) => {
+                if(connErr) {
                     console.log(sql + connErr);
                     if(cb){
                         cb(connErr);
@@ -19,7 +19,7 @@ const query =function (sql,cb){
                         cb(null,result);
                     }
                 }
-
+                connection.release();
             })
         }
     });
@@ -46,22 +46,23 @@ exports.createPlayerInfo = function (uniqueID, accountID, nickName, goldCount, a
         + "'" + ','
         + "'" + accountID
         + "'" + ','
-        + "'" +nickName
+        + "'" + nickName
         + "'" + ','
         + "'" + goldCount
         + "'" +','
         + "'" + avatarUrl
         + "'" + ');' ;
+
     query(sql,(err,data)=>{
-        if(err) {
-            console.log('create player info = ' + err);
-        }else {
-            console.log('create player info = ' + JSON.stringify(data));
+        if(err){
+            console.log('db:create player info = ' + err);
+        }else{
+            console.log('db:create player info = ' + JSON.stringify(data));
         }
     });
 };
 
 //创建一个连接池
 exports.connect = function (config) {
-    mysql.createPool(config);
+    client = mysql.createPool(config);
 };

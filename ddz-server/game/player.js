@@ -37,7 +37,7 @@ module.exports = function (spec, socket, cbIndex, gameContorller) {
     _socket.on('notify', (notifyData)=>{
         let type = notifyData.type;
         //let data = notifyData.data;为了避免data引起混淆直接用notifyData.data
-        console.log('notify data = ' + JSON.stringify(notifyData.data));
+        console.log('player:notify data = ' + JSON.stringify(notifyData.data));
         let callBackIndex = notifyData.callBackIndex;
         switch (type){
             case 'create_room':
@@ -122,7 +122,7 @@ module.exports = function (spec, socket, cbIndex, gameContorller) {
                    }
                 });
             }
-            break;*/
+            break;
             default:
                 break;
         }

@@ -3,7 +3,7 @@ const Room = require('./room');
 const defines = require('./../defines');
 let _playerList = [];   //管理玩家实例的列表
 let _roomList = [];
-//目前把配置卸载代码中，以后卸载数据库中便于更新
+//目前把配置写在代码中，以后写在数据库中便于更新
 /*const createRoomConfig = {
     'rate_1': {
         needCostGold: 10
@@ -36,6 +36,7 @@ exports.createRoom = function (data, player, cb) {
 
     let room = Room(data, player);
     _roomList.push(room);
+    console.log('G-C:room = ' + room);
     if (cb) {
         cb(null, room.roomID);
     }
@@ -43,18 +44,19 @@ exports.createRoom = function (data, player, cb) {
 exports.joinRoom = function (data, player, cb) {
     console.log('data = ' + typeof data);
 
+
     for (let i = 0; i < _roomList.length; i++) {
         console.log('room id = ' + typeof _roomList[i].roomID);
         console.log('data = ' + data);
         if (_roomList[i].roomID === data) {
             let room = _roomList[i];
 
-/*            if (room.getPlayerCount() === 3){
+            if (room.getPlayerCount() === 3){
                 if (cb){
                     cb('房间已满！');
                 }
                 return;
-            }*/
+            }
 
 
             room.joinPlayer(player);
@@ -64,9 +66,9 @@ exports.joinRoom = function (data, player, cb) {
                     data: {bottom: room.bottom, rate: room.rate}
                 });
             }
-                if (cb){
+  /*              if (cb){
                     cb(null,{gold:room.gold});
-                }
+                }*/
             return;
 
         }

@@ -126,12 +126,6 @@ module.exports = function () {
     };
 
 /*各种牌型的判断和对比
-    const isOneCard = function (cardList) {
-        if (cardList.length === 1) {
-            return true;
-        }
-        return false;
-    };
     const isDouble = function (cardList) {
         if (cardList.length === 2) {
             if (cardList[0].value !== undefined && cardList[0].value === cardList[1].value) {
