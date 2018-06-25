@@ -39,7 +39,7 @@ const SocketController  = function () {
     const request = function (type,data, cb) {
         _callBackIndex ++;
         _callBackMap[_callBackIndex] = cb;
-        notify(data,_callBackIndex);
+        notify(type,data,_callBackIndex);
     };
 
     that.requestLogin = function (data,cb) {
