@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "b6c67182-14bd-4c7d-b96e-a933f2efa0e4",
+  "uuid": "3c6f3afc-3a85-4bce-b67f-a33c1f040d24",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "wxlogin_0": {
       "ver": "1.0.3",
-      "uuid": "530b56d8-05eb-4ac4-bbf5-4da515d148fb",
-      "rawTextureUuid": "b6c67182-14bd-4c7d-b96e-a933f2efa0e4",
+      "uuid": "be2c399e-f365-46d6-9d8a-8418ab7f4c85",
+      "rawTextureUuid": "3c6f3afc-3a85-4bce-b67f-a33c1f040d24",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
