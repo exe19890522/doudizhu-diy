@@ -34,8 +34,6 @@ cc.Class({
                     avatarUrl:global.playerData.avatarUrl
                 },(err,result)=>{
                     //到这一步后即实现了一个具有回调功能的请求
-                    cc.director.loadScene('hallScene');  //进入大厅
-                    console.log('loadScene2 = ');
                     if (err) {
                         console.log('err = ' + err);
                     }else{

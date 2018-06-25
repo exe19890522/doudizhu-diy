@@ -1,26 +1,26 @@
 import global from './../../global'
 cc.Class({
     extends:cc.Component,
-    properties:{
-        LabelNode : cc.Node,
+    properties: {
+        labelNode : cc.Node,
+
     },
     onLoad(){
         this.labelList = this.labelNode.children;
         this.roomIDStr = '';
-
     },
-    onButtonClick(event,customData){
-        console.log('click =' + customData);
+    onButtonClick(event, customData){
+        console.log('click  =' + customData);
 
         if (customData.length === 1){
             this.roomIDStr += customData;
-            if  (this.roomIDStr.length === 6) {
+            if  (this.roomIDStr.length === 6){
                 console.log('join room');
                 global.socket.requestJoinRoom(this.roomIDStr,(err,data)=>{
                     if (err){
                         console.log('err = ' + err);
                     }else {
-                        //{"data":{"bottom":10,"rate":3}}
+                        //{"data":{"bottom":10,"rate":2}}
                         console.log('join room = ' + JSON.stringify(data));
                         global.playerData.bottom = data.data.bottom;
                         global.playerData.rate = data.data.rate;
@@ -49,13 +49,14 @@ cc.Class({
         }
     },
     update(dt){
+
         for(let i = 0 ; i < this.labelList.length ; i ++){
             this.labelList[i].getComponent(cc.Label).string= '';
         }
         for(let i = 0 ; i < this.roomIDStr.length ; i ++){
             this.labelList[i].getComponent(cc.Label).string= this.roomIDStr[i];
         }
-        this.roomIDLabel.string = this.roomIDStr;
+        //this.roomIDLabel.string = this.roomIDStr;
     }
 });
 

@@ -18,11 +18,11 @@ cc.Class({
         this.idLabel.string = 'ID:' + global.playerData.accountID;
         this.goldCountLabel.string = global.playerData.goldCount;
 
-        cc.loader.load({url:global.playerData.avatarUrl,type:'jpg'},(err,tex)=>{
 
+        cc.loader.load({url:global.playerData.avatarUrl,type:'jpg'},(err,tex)=> {
             //以下是对头像图片的缩放处理以适应背景框的大小
             let oldWidth = this.headImage.node.width;
-            console.log('');
+            console.log('old withd' + oldWidth);
             this.headImage.spriteFrame = new cc.SpriteFrame(tex);
             let newWidth = this.headImage.node.width;
             this.headImage.node.scale = oldWidth / newWidth;

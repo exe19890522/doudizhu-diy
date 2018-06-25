@@ -1,24 +1,26 @@
 import global from './../global'
 cc.Class({
     extends: cc.Component,
-
     properties: {
         readyButton:cc.Node,
-        readyokButton:cc.Node,
         gameStartButton:cc.Node,
-        gameBeforUI:cc.Node
+        gameBeforUI:cc.Node,
+        readyokButton:cc.Node
     },
     onLoad(){
-        this.node.on('init',()=> {
-            if (global.playerData.houseMangerID === global.playerData.accountID) {
+
+        this.node.on('init',()=>{
+            if (global.playerData.houseMangerID === global.playerData.accountID){
                 this.readyButton.active = false;
-                this.readyokButton.active = false;
-                this.gameStartButton = true;
+                this.gameStartButton.active = true;
+                //this.readyokButton.active = false;
+                console.log('gameBeforUI:global houserID = accountID');
             } else {
                 this.readyButton.active = true;
                 this.readyokButton.active = false;
-                this.gameStartButton = false;
+                this.gameStartButton.active = false;
             }
+
         });
         global.socket.onGameStart(()=>{
             this.gameBeforUI.active = false;
@@ -28,11 +30,11 @@ cc.Class({
             if(global.playerData.accountID === data){
                 this.readyButton.active = false;
                 this.readyokButton.active = false;
-                this.gameStartButton = true;
+                this.gameStartButton.active = true;
             }
         })
     },
-    onButtonClick (event,customData) {
+    onButtonClick (event,customData){
         switch (customData){
             case 'ready':
                 console.log('ready');
