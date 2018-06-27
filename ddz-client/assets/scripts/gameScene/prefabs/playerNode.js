@@ -1,4 +1,4 @@
-import global from './../global';
+import global from './../global'
 //const global = require("./../../global");
 cc.Class({
     extends: cc.Component,
@@ -86,7 +86,7 @@ cc.Class({
                     cards:cards
             }*/
 
-            if (detail.accountID === this.accountID && global.playerData.accountID){
+            if (detail.accountID === this.accountID && global.playerData.accountID) {
                 this.playerPushCard(detail.cards);
             }
         });
@@ -106,10 +106,10 @@ cc.Class({
             //cc.log('should load a texture from RESTful API by specify the type:' + (tex instanceof cc.texture2D));
             //以下是对头像图片的缩放处理以适应背景框的大小
             let oldWidth = this.headImage.node.width;
-            console.log('old withd' + oldWidth);
+            //console.log('old withd' + oldWidth);
             this.headImage.spriteFrame = new cc.SpriteFrame(tex);
             let newWidth = this.headImage.node.width;
-            console.log('new withd' + newWidth);
+            //console.log('new withd' + newWidth);
             this.headImage.node.scale = oldWidth / newWidth;
         });
         this.node.on('player_ready', (event) => {
@@ -119,12 +119,12 @@ cc.Class({
                 this.readyIcon.active = true;
             }
         });
-        this.node.on('can_rob_master', (event) => {
+/*        this.node.on('can_rob_master', (event) => {
             let detail = event.detail;
             if (detail === this.accountID) {
                 this.readyIcon.active = true;
             }
-        });
+        });*/
         //当位置为1即右边玩家位置时，index乘以-1将位置取反，使背面牌出现在头像的左边
         if (index === 1) {
             this.cardsNode.x *= -1;

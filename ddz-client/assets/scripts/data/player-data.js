@@ -6,7 +6,7 @@ const getRandomStr = function (count) {
     return str;
 };
 //由于开发阶段无法获取微信中的数据，这里暂时使用默认数据：随机不同的名称
-let PlayerData = function () {
+const PlayerData = function () {
     let that = {};
     // {
     //     uniqueID: '20000',

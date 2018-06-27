@@ -59,19 +59,3 @@ cc.Class({
         //this.roomIDLabel.string = this.roomIDStr;
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

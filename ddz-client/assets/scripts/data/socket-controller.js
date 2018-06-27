@@ -45,15 +45,12 @@ const SocketController  = function () {
     that.requestLogin = function (data,cb) {
         request('login',data,cb);
     };
-
     that.requestCreateRoom = function (data,cb) {
         request('create_room', data, cb);
     };
-
     that.requestJoinRoom = function (data,cb) {
         request('join_room',data,cb);
     };
-
     that.requestEnterRoomScene = function (cb) {
         request('enter_room_scene',{},cb);
     };
@@ -65,11 +62,14 @@ const SocketController  = function () {
         request('myself_push_card',value,cb);
     };
 
-    that.notifyReady = function(){
+
+
+
+    that.notifyReady = function () {
         notify('ready',{},null);
     };
     //玩家抢与不抢通知服务端
-    that.notifyRobState =function(value){
+    that.notifyRobState =function(value) {
         notify('rob_state',value,null);
     };
 

@@ -1,5 +1,4 @@
 import global from './../global'
-//const global = require ('./../global');
 cc.Class({
     extends: cc.Component,
 
@@ -34,9 +33,9 @@ cc.Class({
                     avatarUrl:global.playerData.avatarUrl
                 },(err,result)=>{
                     //到这一步后即实现了一个具有回调功能的请求
-                    if (err) {
+                    if (err){
                         console.log('err = ' + err);
-                    }else{
+                    }else {
                         console.log('loginscene:result = ' + JSON.stringify(result));
                         global.playerData.goldCount = result.goldCount;
                         cc.director.loadScene('hallScene');  //进入大厅
@@ -49,19 +48,3 @@ cc.Class({
     }
     // update (dt) {},
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

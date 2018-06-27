@@ -120,7 +120,6 @@ cc.Class({
     addPlayerNode(data){
         let playerNode = cc.instantiate(this.playerNodePrefab);
         playerNode.parent = this.node;
-        console.log("playerNode.getComponent('playerNode')===");
         playerNode.getComponent('playerNode').initWithData(data, this.playerPosList[data.seatIndex]);
         playerNode.position = this.playerPosNode.children[this.playerPosList[data.seatIndex]].position;
         this.playerNodeList.push(playerNode);

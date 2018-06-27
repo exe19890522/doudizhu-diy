@@ -1,3 +1,4 @@
+import global from "../../global";
 
 cc.Class({
     extends: cc.Component,
@@ -5,19 +6,20 @@ cc.Class({
     properties: {
         cardsSpriteAtlas:cc.SpriteAtlas
     },
-
-    onLoad () {
+    onLoad (){
         this.flag = false;
         this.offset = 20;
         this.node.on('init-y',()=>{
             if(this.flag){
                 this.node.y -= this.offset;
                 this.flag =false;
+
             }
         });
         this.node.on('pushed-card',(event)=>{
            let detail = event.detail;
-            for (let i = 0; i < detail.length; i++) {
+            console.log('pushed-card' + JSON.stringify(detail));
+            for (let i = 0; i < detail.length; i++){
                 if (detail[i].id === this.id){
                     this.runToCenter(this.node);
                 }
@@ -58,13 +60,13 @@ cc.Class({
 
     },
     //将服务端发来的牌组信息在客户端显示出来
-    showCard(card,accountID){
+    showCard(card, accountID){
         if (accountID){
             this.accountID = accountID;
         }
         this.id = card.id;
-        this.cardData = card ;
-        console.log('card = ' + spriteKey);
+        this.cardData = card;
+        //console.log('gS\p\card:card = ' + spriteKey);
         const CardValue = {
             "12": 1,
             "13": 2,
@@ -80,15 +82,23 @@ cc.Class({
             "10": 12,
             "11": 13
         };
+
+
+
+
+
+
+
+
         const cardShape = {
             "1": 3,
             "2": 2,
             "3": 1,
-            "4": 0,
+            "4": 0
         };
         const Kings = {
-            "1": 54,
-            "2": 53
+            "14": 54,
+            "15": 53
         };
         let spriteKey = '';
         if (card.shape){
@@ -98,16 +108,6 @@ cc.Class({
         }
         console.log('sprite key = ' + spriteKey);
         this.node.getComponent(cc.Sprite).spriteFrame = this.cardsSpriteAtlas.getSpriteFrame(spriteKey);
+        this.setTouchEvent();
     }
-
 });
-
-
-
-
-
-
-
-
-
-

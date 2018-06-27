@@ -13,7 +13,7 @@ cc.Class({
             if (global.playerData.houseMangerID === global.playerData.accountID){
                 this.readyButton.active = false;
                 this.gameStartButton.active = true;
-                //this.readyokButton.active = false;
+                this.readyokButton.active = false;
                 console.log('gameBeforUI:global houserID = accountID');
             } else {
                 this.readyButton.active = true;
@@ -48,7 +48,7 @@ cc.Class({
                     if(err){
                         console.log('err = ' + err);
                     }else{
-                        console.log('game start data = ' + data);
+                        console.log('game start data = ' + JSON.stringify(data));
                     }
                 });
                 break;
@@ -57,17 +57,3 @@ cc.Class({
         }
     },
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
