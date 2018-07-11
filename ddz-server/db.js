@@ -19,7 +19,7 @@ const query =function (sql,cb) {
                         cb(null,result);
                     }
                 }
-                connection.release();
+                connection.release();//释放掉连接池，即可连接很多玩家的多次连接了
             })
         }
     });

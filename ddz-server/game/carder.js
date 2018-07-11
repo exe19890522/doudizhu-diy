@@ -136,6 +136,7 @@ module.exports = function () {
     };
 
 //各种牌型的判断和对比
+
     const isDouble = function (cardList) {
         if (cardList.length === 2) {
             if (cardList[0].value !== undefined && cardList[0].value === cardList[1].value) {
@@ -144,7 +145,6 @@ module.exports = function () {
         }
         return false;
     };
-
     const isThree = function (cardList) {
         if (cardList.length === 3) {
 
@@ -191,7 +191,6 @@ module.exports = function () {
         }
         return false;
     };
-
     const isBoom = function (cardList) {
         if (isKingBoom(cardList)) {
             return true;
@@ -236,7 +235,6 @@ module.exports = function () {
         }
         return false;
     };
-
     const isThreeWithTwo = function (cardList) {
         if (cardList.length === 5) {
             let map = {};
@@ -273,7 +271,6 @@ module.exports = function () {
         }
         return false;
     };
-
     const isPlane = function (cardList) {
         console.log('card list length = ' + cardList.length);
         if (cardList.length === 6) {
@@ -313,7 +310,6 @@ module.exports = function () {
 
         return false;
     };
-
     const isPlaneWithOne = function (cardList) {
         if (cardList.length === 8) {
             let map = {};
@@ -1458,6 +1454,7 @@ module.exports = function () {
         }
         return doubleScrollList;
     };
+
     that.getTipsCardsList = function (cardsA, cardsB) {
         if (cardsA === undefined) {
             let list = [];

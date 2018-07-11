@@ -209,6 +209,7 @@ module.exports = function (spec, player) {
 */
             let cardsValue = _carder.isCanPushCards(cards);
             if (cardsValue) {
+                //上家出牌列表为空或者有两个人选择不出牌时，可以直接出牌
                 if (_currentPlayerPushCardList === undefined || _notPushCardNumber === 2) {
                     if (cb) {
                         cb(null, 'push card success');
@@ -378,10 +379,11 @@ console.log('确定谁是地主+显示底牌');
         setState(RoomState.StartGame);
         console.log('RoomState2:'+ JSON.stringify(RoomState));
     };
-//取回底分和倍数
+    //获取房间内玩家人数
     that.getPlayerCount = function () {
         return _playerList.length;
     };
+//取回底分和倍数
     Object.defineProperty(that, 'bottom', {
         get() {
             return _bottom;
