@@ -304,19 +304,19 @@ console.log('手牌排序中。。。。。。。。。√');
                             console.log('data = ' + JSON.stringify(data));
                             this.tipsCardsList = data.data;
                             console.log('this.tipsCardsList =  ' + JSON.stringify(this.tipsCardsList));
-                            this.showTipsCards(this.tipsCardsList);
+                            this.showTipsCards(this.tipsCardsList[this.tipsCardsIndex]);//this.showTipsCards(this.tipsCardsList);
                             // this.tipsCardsIndex ++;
                         }
                     });
                 } else {
-                    // let cards = this.tipsCardsList[this.tipsCardsIndex];
+                    let cards = this.tipsCardsList[this.tipsCardsIndex];//此行注释
                     this.showTipsCards(this.tipsCardsList);
                 }
 
-                // this.tipsCardsIndex ++;
-                // if (this.tipsCardsIndex >= this.tipsCardsList.length){
-                //     this.tipsCardsIndex = 0;
-                // }
+                this.tipsCardsIndex ++;// 此行注释
+                if (this.tipsCardsIndex >= this.tipsCardsList.length){
+                    this.tipsCardsIndex = 0;
+                }//此段if代码注释
 
 
                 break;
@@ -363,6 +363,10 @@ console.log('手牌排序中。。。。。。。。。√');
                         this.playUI.active = false;
                         this.chooseCardDataList = [];
                         this.referCardsPos();
+
+                        if (this.cardList.length === 0){
+                            console.log('gUI367:手牌为空胜利 ');
+                        }
                     }
                 });
                 console.log('出牌');
