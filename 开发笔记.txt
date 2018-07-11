@@ -1,4 +1,4 @@
-1.安装相关环境
+﻿1.安装相关环境
 	node >=8.9.0 ==8.9.4,
 	mysql >=5.7.20 ==5.7.21,
 	mysql-workbench >=6.3 ==6.3.10,
@@ -81,7 +81,7 @@
     7.8房间状态机：更新room代码;修复开始游戏后玩家头像上的准备标示：更新gameScene、playernode、room代码；
 8.发牌系统：在服务端game目录下新建card.js、carder.js脚本，更新代码，再更新room、player、socket-controller代码,
     8.1在客户端gamescene中新建一个空节点gameingUI，并在gameScene目录下新建gameingUI.js脚本，绑定并更新gameingUI脚本，
-    将客户端中的gameingUI节点绑定到canvas属性的gameBeforUI脚本属性中的gameingUI属性，在gameingUI空节点下新建card空节点，
+    将客户端中的gameingUI节点绑定到canvas属性的gameingUI脚本属性中的gameingUI节点，在gameingUI空节点下新建card空节点，
     将card.png、card.plist拖放到客户端资源目录中，在客户端新建gameScene/Prefab/card.js脚本并绑定到card空节点的属性，
     拖放card为预制件并在层级管理器中删除该节点，更新Prefab/card.js脚本代码,拖放card.plist到card预制件的cardsSpriteAtlas属性中，
     在card预制件的属性中添加Sprite组件，拖放card.plist中的card_55到Sprite组件的Sprite Frame属性中，更新Prefabs/card.js代码,
@@ -111,132 +111,12 @@
     9.2重新排序地主牌,点击牌：更新gameingUI、prefabs/card脚本；
     9.3选中牌再出牌：更新socket-controller、gameingUI脚本，客户端新建一个tipsLabel绑定到canvas属性，
     更新carder、room、player、socket-controller脚本，
-    9.4出牌及牌型判断和对比：更新carder、room脚本,客户端中
+    9.4出牌及牌型判断和对比：更新carder、room脚本,客户端中    ==忘记做笔记了==
+    9.5修复ui小细节，更新减少手牌功能：更新prefabs/card、playernode、gameingUI.player脚本，
 
 
+[db-task][sync-changes] uuid collision, the uuid for E:\program files\CocosCreator\resources\static\default-assets\prefab\toggleGroup.prefab is already in used by E:\program files\CocosCreator\resources\static\default-assets\prefab\toggleContainer.prefab. Assigning a new uuid.
 
-
-
-
-
-
-8.ui操作：根据效果图和基本素材整理版面，
-    8.1将room_bg拖放到creator中资源assets/resources/ui/中，再把ui中的room_bg拖放到层级canvas 上，选中canvas，
-    设置design resolution为 1280*720，同理放入四个右上角的按钮：玩法、战绩、设置、退出（重命名相关资源的名称）。删除wxLogin节点，新建名为buttons的空节点，
-    将资源assets/resources/ui/中的退出图片拖放到层级canvas 上并调整到场景编辑器中的背景图右上角上，确定好位置，用来给其他三个按钮做适配定位，
-    给退出按钮添加ui组件-widget，勾选top和right做顶部对其和右对齐，添加button组件，transition过度类型选择SCALE，zoomscale 设定为1.1
-    设定click event 数值为1，拖放层级canvas到[0]后面的节点框，右边为mainscenes和buttonclick，customevent输入tuichu，
-    在层级canvas下buttons下backBtn4右键复制节点三次，得到四个按钮，将第四个按钮往左边拖动到核实位置，再在层级中选中这四个按钮，
-    再点击场景编辑器工具栏的 按右分布，重命名四个层级中buttons节点，选中shezhiBtn3节点，
-    拖放资源assets/resources/ui/中的shezhiBtn3到 shezhiBtn3节点的sprite frame，其他两个同理，相应的customevent分别输入shezhi zhanji wanfa
-    8.2同理拖动bg_black到资源ui，在层级canvas下新建空节点playerNode，在playerNode下新建空节点headNode 和，
-    将bg_black拖动到headNode，在场景中拖动headNode到合适的位置，给bg_black添加ui组件-widget，勾选top和做顶部对其和左对齐，
-    headNode节点添加渲染组件mask，将head_72x72加入到ui再加到headNode中，层级中bg_black和head_72x72的位置要一致，
-    选中headNode节点且mask没有勾选inverted时，修改size信息为72*72，修正三者的相对位置，重命名bg_black为headimage，
-    复制headimage节点并修改层级关系到playerNode下并重命名为blackBg，点击create左上角的缩放工具，调整blackBg的形状和位置，
-    修改blackBg的size mode为trimmed，点选sprite frame右边的编辑按钮打开sprite编辑器（很慢耐心等），
-    设置border的左右上下四个值为14-14-16-22，再点右上角的绿色√号应用，设置scale的XY都是1，size为150*64，
-    在playerNode下新建渲染节点label，设置fontsize和lineheight均为26，string为desire，调整label的位置并重名为nickNameLabel,
-    复制改节点一次，重命名为IDLabel，设置nickNameLabel和IDLabel的anchor的X为0，设置IDLabel的 fontsize和lineheight均为24，
-    分别添加roomcard、roomcard2、add三张图片到场景并设置好相关位置和属性，在playerNode下新建渲染节点label：housecardcountlabel，
-    并设置 fontsize和lineheight均为24，对add节点的属性中添加ui组件button，zoomscale设置为1.1，设置点击事件：add，
-    8.3canvas下创建空节点：tipsNode，添加tip_bg图片到tipsNode下且在场景中调整好位置，调整color属性中的A值使他半透明，
-    在tipsN下创建渲染节点label：tipLabel,输入相关文字并调整颜色和文字大小，在mainScene中补上相关代码，
-    再在tipsNode属性中添加渲染组件mask，把tipslabel拖放到canvas的属性中Tips Label中。分别添加btn_join和btn_create1到场景并调整位置，
-    并在层级中选中，在属性中添加button组件，transition过度类型选择SCALE，zoomscale 设定为1.1，设定click event 数值为1，
-    拖放层级canvas到[0]后面的节点框，右边为mainscenes和buttonclick，customevent输入joinbutton和createbutton，
-    层级新建joinRoom空节点并拖入资源assets/prefabs中，在资源assets\scripts\mainScene\componment\下新建joinRoom.js，
-    并把joinRoom.js拖放到层级joinRoom节点的属性中，添加mainBg6到joinRoom，添加join_0 ~9 和join_youxia join_zuoxia到资源，
-    join_0的属性添加button组件，拖放层级joinRoom节点到[0]后，join + onbuttonclick，customeventdata输入 0，同理操作其他11个按钮，
-    再同理操作给输入房间号的界面加一个关闭的按钮，再去mainsence脚本中添加相关代码,在层级joinRoom节点上创建空节点bg，
-    并将位置置于joinRoom节点下其他节点之上，size为1280*720，bg的属性添加button组件，即可实现输入房间号时遮蔽该层以下的按钮
-    8.4在joinRoom节点下新建一个空节点：labels，在labels节点下新建6个渲染label节点，调整位置关系、颜色和字体大小，
-    选中最后一个label放到房间号显示区域的最右边的位置，再选中6个label，再点长场景左上角的工具栏：平均分布.
-    在joinRoom.js中添加代码，选中层级中的joinRoom，在属性中添加用户脚本组件joinRoom，labellist数量写6，
-    再按照关系分别把层级中的6个label拖放到labellist中，返回joinRoom.js中添加代码，
-    8.5在canvas节点下新建空节点：createRoom，导入相关图片commom_title_bg+common_bg1+common_bg2+create_room_bg2等，设置位置和大小，
-    在createroom节点下新建渲染label节点：斗地主1，跟左边的按钮适配，同理新建 斗地主2 和 斗地主3，
-    在createroom节点下新建空节点：rulechoose，在rulechoose下新建ui节点-单选按钮，做位置适配，同理添加各种选择性需求，
-    完成创建createroom界面之前，需要在createroom下创建一个空节点:createroom_bg， 并将位置置于createroom节点下其他节点之上，设置size 1280*720，
-    再添加ui组件button用于遮蔽其他按钮，
-    在资源assets\scripts\mainScene\componment\下新建createRoom.js  并把createRoom.js拖放到层级createRoom节点的属性中，
-    在mainSence.js中更新代码,再将createRoom节点拖放到canvas的属性中createRoomPrefab一栏，在mainSence.js中更新代码,
-    8.6在createRoom.js中更新代码，给创建房间界面的其他按钮加点击事件及其相应代码，
-    注意关于预制体的操作要时时记得在相关节点属性的右上角保存，输入房间号的界面要记得关注点击事件是否丢失了onbuttonclick。
-9创建登陆场景loginScene和房间场景gameScene：
-    9.1在资源assets\scenes\下新建loginScene文件，并在右边的属性中调整尺寸为1280*720，导入背景图，添加一个按钮图标btn_lv2，
-    再创建一个label：微信登陆，调整文字大小，在资源assets\scripts\loginScene\下新建loginScene.js文件，并拖放到canvas的属性中，
-    btn_lv2属性中添加button组件，并设置点击事件，修正mainscene里面的相关代码,在资源assets\scenes\下新建gameScene文件，
-    并在右边的属性中调整尺寸为1280*720，导入相关背景图即可，再createRoom.js中更新代码：cc.director.loadScene('gameScene')即可打开房间，
-    9.2 在资源assets\scripts\utility\下新建event-listener.js ，新增代码，在G:\G:\doudizhumayun\trunk\ddz-server\game\新增game-controller，
-    并在player.js中引入这个脚本，同理新建一个room.js,新增代码并在game-controller、game-controller、app.js中新增待相关代码，
-    9.3实现读取玩家在创建房间界面所选择的玩法中对应的数据：在客户端resources\config\下新建一个create-room-config.json，
-    在create的资源/assets/prefabs中双击预制体createRoom，在turnCountChooseGroup中选中toggle1，属性中拖动层级中的createRoom到[0]右边，
-    createroom+onbuttonclick，事件名：turn_count_1，同理操作turn_count_2 和3，special_rule_1 和 2 ，再在createRoom中更新代码，
-    复制客户端的create-room-config.json到服务端根目录，再去room.js中更新代码（加上对_needHouseCard的解析）
-    9.4实现房间内相关逻辑和ui摆放：在player-data中更新代码，再到loginscene中onload中提前加载部分资源(自己写一个资源管理器)，
-    在G:\G:\doudizhumayun\trunk\doudizhu-client\assets\scripts\utility下新建resources-manager.js，新增代码；到tianba.js中导入这个脚本，
-    在\assets\resources\config\下新建test.json测试文件用于测试resources-manager的功能，再去loginscene中更新代码，
-    利用插件脚本的特性声明特殊变量：在defines中更新代码，在create中选中这个文件，属性中勾选 导入为插件，保存，
-    去socket-controller.js里面注释掉defines的import，再去loginscene  player-data中更新代码，
-    9.5在G:\G:\doudizhumayun\trunk\doudizhu-client\assets\scripts\gameScene下新建gameScene.js和uicontroller.js,在create中打开gamescene场景，
-    添加gameScene.js到canvas的属性中，在层级中创建roomRule空节点，并在其中新建6个渲染label组件，分别命名为：roomIDlabel,
-    turnCountLabel,needHouseCardLabel,normalBombRateLabel,kingBombRateLabel,并合理设置位置，在uicontroller中新增代码
-    在create 中新建一个ui空节点并导入一个按钮图片：wx_yaoqing，在wx_yaoqing下新建label节点，uicontroller中更新代码，在create中选中层级ui节点，
-    添加uicontroller.js到ui的属性中，并绑定roomIDlabel,turnCountLabel,needHouseCardLabel,normalBombRateLabel,kingBombRateLabel
-    六个节点到uicontroller;导入一个解散房间的图片并拖放到场景中，再添加一个按钮点击事件：jiesan，同理添加一个聊天的图片
-    ui-controller中更新代码,  在create 中新建一个gameLayer空节点/playerNode/headNode/headMask空节点，在gameLayer空节点/playerNode/headNode中
-    添加一个头像框图片head_72x72，在headMask中添加一个头像框图片head_72x72，选中headMask属性添加渲染Mask组件，type：RECT,,
-    并重命名headMask中head_72x72为headImage，另外需要在客户端的gameScene中新建一个playerNode.js脚本用于管理玩家头像，
-    并绑定到playerNode节点，playerNode.js中更新代码，导入离线offline和准备ready图片到层级playerNode节点下，
-    并设置成不显示状态，导入fen-bg图片到层级playerNode节点下，再导入分fen图片到fen-bg节点下，调整位置，
-    并在fen-bg节点下新建两个label节点（scoreLabel和nickNameLabel），再将整个playerNode节点作为预制件保存，playerNode.js更新代码
-    另外需要在客户端的gameScene中新建一个gameLayer.js脚本用于管理玩家位置，并绑定到game节点，game.js中更新代码，room.js playerNode.js
-    joinRoom.js中更新代码
-    //下面的if代码是指在加入的房间号出错的情况如何处理err：在joinRoom预制体中新增一个tipsLabel节点，
-    在joinroom.js文件中添加跟tipsLabel相关的代码.
-    9.6gameLayer.js更新代码，gameScene.js,socket-controller.js更新代码，gameLayer.js更新代码并把playerNode.js绑定到gameLayer节点，
-    在gameLayer.js更新预制件有关的代码，
-
-
-
-
-    第9  03 00   需要重新看第7个吧，找一下为什么读取不了turn-count属性
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[db-task][sync-changes] uuid collision, the uuid for E:\program files\CocosCreator\resources\static\default-assets\prefab\toggleGroup.prefab
+is already in used by E:\program files\CocosCreator\resources\static\default-assets\prefab\toggleContainer.prefab. Assigning a new uuid.
 

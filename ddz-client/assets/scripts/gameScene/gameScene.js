@@ -50,22 +50,18 @@ cc.Class({
                this.playerNodeList[i].emit('push-card');
            }
          });
-         //可以抢地主时，，，
-         global.socket.onCanRobMaster((data)=>{
+         global.socket.onCanRobMaster((data)=>{//可以抢地主时，，，
             for (let i = 0 ; i < this.playerNodeList.length ; i ++){
                  this.playerNodeList[i].emit('can_rob_master',data);
             }
          });
-         //正在抢地主  的状态
-         global.socket.onPlayerRobState((data)=>{
+         global.socket.onPlayerRobState((data)=>{         //正在抢地主  的状态
             for (let i = 0 ; i < this.playerNodeList.length ; i ++){
                  this.playerNodeList[i].emit('rob_state',data);
             }
          });
-         //确定地主
-         global.socket.onChangeMaster((data)=>{
-             console.log('on change master = ' + data);
-             //保存地主id
+         global.socket.onChangeMaster((data)=>{         //确定地主
+             console.log('on change master = ' + data);             //保存地主id
              global.playerData.masterID = data;
              for (let i = 0; i < this.playerNodeList.length; i++){
                  let node = this.playerNodeList[i];
@@ -81,8 +77,7 @@ cc.Class({
                  this.playerNodeList[i].emit('player_push_card',data);
             }
          });
-         //监听添加底牌到手牌
-         this.node.on('add_card_to_player',()=>{
+         this.node.on('add_card_to_player',()=>{         //监听添加底牌到手牌
             if (global.playerData.accountID !== global.playerData.masterID){
                 for (let i = 0 ; i < this.playerNodeList.length ; i ++){
                     this.playerNodeList[i].emit('add_three_card',global.playerData.masterID);

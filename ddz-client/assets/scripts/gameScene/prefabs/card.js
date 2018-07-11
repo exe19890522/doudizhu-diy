@@ -18,7 +18,7 @@ cc.Class({
         });
         this.node.on('pushed-card',(event)=>{
            let detail = event.detail;
-            console.log('pushed-card' + JSON.stringify(detail));
+            console.log('gS\p\card21:pushed-card' + JSON.stringify(detail));
             for (let i = 0; i < detail.length; i++){
                 if (detail[i].id === this.id){
                     this.runToCenter(this.node);
@@ -36,6 +36,7 @@ cc.Class({
             //cc.systemEvent.emit('rm-card-from-list',this.id);
             this.node.destroy();
         }));
+		console.log('gS\p\card39:runToCenter************');
         node.runAction(moveAction);
         node.runAction(seq);
     },
@@ -45,7 +46,7 @@ cc.Class({
     setTouchEvent(){
         if (this.accountID === global.playerData.accountID){
             this.node.on(cc.Node.EventType.TOUCH_START,()=>{
-                console.log('touch' + this.id);
+                console.log('touch=' + this.id);
                 if (this.flag === false){
                     this.node.y += 20;
                     this.flag = true;
@@ -56,7 +57,9 @@ cc.Class({
                     cc.systemEvent.emit('unchoose_card',this.cardData);
                 }
             });
-        }
+        }else {
+			console.log('gS\p\card61:accountID !=global.playerData.accountID');
+		}
 
     },
     //将服务端发来的牌组信息在客户端显示出来
@@ -66,7 +69,7 @@ cc.Class({
         }
         this.id = card.id;
         this.cardData = card;
-        //console.log('gS\p\card:card = ' + spriteKey);
+        console.log('gS\p\card:accountID ========= ' + accountID + '++card.id++' + card.id + 'card==' +JSON.stringify(card));
         const CardValue = {
             "12": 1,
             "13": 2,

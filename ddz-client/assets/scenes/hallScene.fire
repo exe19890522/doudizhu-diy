@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "8bb70151-257e-4b63-8d50-cd94ec05b58f",
+    "_id": "c40f2b80-0e6f-475a-aba4-051adf568d24",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -176,7 +176,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "4fb56048-c879-4e5c-9764-a123ef64d5f5"
+      "__uuid__": "b065715f-1f8f-4d33-b8d2-ff28f13032b9"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -257,7 +257,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "67afdf89-adf7-439d-ae90-0b5b1a9960ac"
+      "__uuid__": "01e57250-d4aa-4c87-b72f-c07b52b02f35"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -403,7 +403,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "c999f330-97c9-43a0-84e4-b9a5e731baaa"
+      "__uuid__": "973221be-b6ef-4678-afb3-6222c664a59c"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -616,7 +616,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "464e8bd9-b204-4f6e-9cc2-04fdbdb77ff6"
+      "__uuid__": "b804c4e8-9c0b-43dd-82a1-d16a41adce8d"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -694,7 +694,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "bb365572-3258-4b39-84ab-afaf457c2154"
+      "__uuid__": "2a5b17bb-386c-4941-956b-36aefb16b756"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -749,12 +749,12 @@
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
+    "_scaleX": 1.5,
+    "_scaleY": 1.5,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -61,
-      "y": 11
+      "x": -55.4,
+      "y": 7.3
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -772,7 +772,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "84f23093-f2f6-4ba9-9ea6-9ffac252a2ee"
+      "__uuid__": "63954a4d-279a-46f7-8649-3bf25f8c9885"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -849,7 +849,9 @@
       "__id__": 20
     },
     "_enabled": true,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "72bd5a57-76a5-4ef0-9a5d-348e8d8b7f2a"
+    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -1104,7 +1106,7 @@
     "_fitHeight": true
   },
   {
-    "__type__": "61fa1XmSn1FiqEJJZSsZin9",
+    "__type__": "3c1e8gWeOxEWaQ57TXXh50a",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1124,10 +1126,10 @@
       "__id__": 19
     },
     "createRoomPrefab": {
-      "__uuid__": "403be4ae-c7b3-429c-b91c-b9d1799a1a23"
+      "__uuid__": "1cbafbce-58ee-4d02-b30f-50ea98f2caf3"
     },
     "joinRoomPrefab": {
-      "__uuid__": "89053abe-33ba-439e-9303-87fdde35fd0f"
+      "__uuid__": "94e4d0db-ef81-446b-81d2-3e66e911e2ef"
     }
   }
 ]

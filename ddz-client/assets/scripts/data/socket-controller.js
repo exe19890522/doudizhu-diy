@@ -61,9 +61,9 @@ const SocketController  = function () {
     that.requestPlayerPushCard = function(value,cb) {
         request('myself_push_card',value,cb);
     };
-
-
-
+    that.requestTipsCards = function (cb) {
+        request('request-tips', {}, cb);
+    };
 
     that.notifyReady = function () {
         notify('ready',{},null);

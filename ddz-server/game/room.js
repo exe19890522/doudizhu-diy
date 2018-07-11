@@ -47,10 +47,9 @@ module.exports = function (spec, player) {
     let _pushPlayerList = [];
     let _master = undefined;
     let _masterIndex = undefined;
-    let _threeCardsList = _carder.getThreeCards();
-    //当前玩家出的牌
-    let _currentPlayerPushCardList = undefined;
-
+    let _threeCardsList = []; //_carder.getThreeCards();
+    let _currentPlayerPushCardList = undefined;    //当前玩家出的牌
+    let _notPushCardNumber = 0;   //有几个玩家选择不出牌
 /*    for(let i = 0; i < cards.length ; i++){
         for(let j = 0; j < cards.length ; j++){
             let card =cards[i][j];
@@ -59,6 +58,7 @@ module.exports = function (spec, player) {
     }*/
 
 //状态机操作
+    // that.gold = spec.gold;
     let _state = RoomState.Invalide;
     const setState = function(state) {
         if (state === _state) {
@@ -100,14 +100,14 @@ module.exports = function (spec, player) {
                     _playerList[i].sendShowBottomCard(_threeCardsList[3]);
                 }
                 //延时2秒，让玩家看清底牌
-                setTimeout(()=>{
+                setTimeout(() => {
                     setState(RoomState.Playing);
                 },2000);
                 break;
             case RoomState.Playing:
-                //服务端轮流下发出牌逻辑
+                //服务端轮流下发出牌逻辑，进入出牌阶段
                 for (let i = 0;i < _playerList.length ; i ++) {
-                    if (_playerList[i].accountID === _master.accountID){
+                    if (_playerList[i].accountID === _master.accountID) {
                         _masterIndex = i;
                     }
                 }
@@ -178,20 +178,22 @@ module.exports = function (spec, player) {
         }
         let player = _pushPlayerList.pop();
         for (let i = 0; i < _playerList.length; i++) {
-            _playerList[i].sendPlayerCanPushCard(player.accountID);
+            _playerList[i].sendPlayerCanPushCard(player.accountID,_notPushCardNumber);
         }
     };
     that.playerPushCard = function(player,cards,cb) {
         if (cards.length === 0) {
+            _notPushCardNumber ++;
+            console.log('玩家不出牌' + _notPushCardNumber);
             turnPushCardPlayer();
         }else {
             ///判断牌型是否合适
-            if (_carder.isCanPushCards(cards)) {
+ /*           if (_carder.isCanPushCards(cards)) {
                 if (_currentPlayerPushCardList === undefined) {
                     if (cb) {
                         cb(null, 'push card success');
                     }
-
+                    _currentPlayerPushCardList = cards;//复制代码段
                     sendPlayerPushCard(player,cards);
                     turnPushCardPlayer();
                 } else {
@@ -204,34 +206,71 @@ module.exports = function (spec, player) {
             }
         }
     };
+*/
+            let cardsValue = _carder.isCanPushCards(cards);
+            if (cardsValue) {
+                if (_currentPlayerPushCardList === undefined || _notPushCardNumber === 2) {
+                    if (cb) {
+                        cb(null, 'push card success');
+                    }
+                    _currentPlayerPushCardList = cards;
+                    sendPlayerPushCard(player, cards);
+                    turnPushCardPlayer();
+                } else {
+                    //
+                    let result = _carder.compare(cards, _currentPlayerPushCardList);
+                    console.log('对比牌型的大小' + result);
+
+                    if (result === true){
+                        if (cb) {
+                            cb(null, cardsValue);
+                        }
+                        _currentPlayerPushCardList = cards;
+                        sendPlayerPushCard(player, cards);
+                        turnPushCardPlayer();
+                    }else {
+                        if (cb){
+                            cb(result);
+                        }
+                    }
+                }
+
+            } else {
+                if (cb) {
+                    cb('不可用的牌型');
+
+                }
+            }
+        }
+
+    };
 
 
+    that.playerRequestTips = function (player, cb) {
+        let cardList = player.cards;
+        if (cb){
+            // let list = [];
 
+            let cardsList = _carder.getTipsCardsList(_currentPlayerPushCardList, cardList);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            // for (let i = 0 ; i < cardList.length ; i ++){
+            //     let cards = [];
+            //     cards.push(cardList[i]);
+            //     list.push(cards);
+            // }
+            cb(null, cardsList);
+        }
+    };
 
 
     //服务端下发玩家出的牌
     const sendPlayerPushCard = function(player,cards) {
-
+        _notPushCardNumber = 0;
         for (let i = 0; i < _playerList.length; i++) {
-            _playerList[i].sendPlayerPushCard()
-
-
-
+            _playerList[i].sendPlayerPushCard({//复制代码段
+                accountID: player.accountID,
+                cards: cards
+            })//复制代码段
         }
     };
 
@@ -289,9 +328,9 @@ module.exports = function (spec, player) {
         }
         setState(RoomState.ShowBottomCard);
     };
+console.log('确定谁是地主+显示底牌');
 
-
-/*    const gameStart = function (){
+/*    const gameStart = function () {
         for (let i = 0 ; i < _playerList.length ; i ++){
             _playerList[i].sendGameStart();
         }
@@ -335,7 +374,9 @@ module.exports = function (spec, player) {
             cb(null,'success');
         }
         //gameStart();
+        console.log('RoomState1:'+ JSON.stringify(RoomState));
         setState(RoomState.StartGame);
+        console.log('RoomState2:'+ JSON.stringify(RoomState));
     };
 //取回底分和倍数
     that.getPlayerCount = function () {

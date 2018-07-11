@@ -25,6 +25,7 @@ cc.Class({
             console.log('old withd' + oldWidth);
             this.headImage.spriteFrame = new cc.SpriteFrame(tex);
             let newWidth = this.headImage.node.width;
+            console.log('new withd' + newWidth);
             this.headImage.node.scale = oldWidth / newWidth;
         });
     },

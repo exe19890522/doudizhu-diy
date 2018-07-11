@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "135287b8-d142-4e4a-bcbe-3c34dee49dcd",
+  "uuid": "cf92aa2b-7c80-444a-8b51-7e23052eee65",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "icon_roomlist_3": {
       "ver": "1.0.3",
-      "uuid": "084931ee-18f7-4bfc-b548-5cc8714bb65e",
-      "rawTextureUuid": "135287b8-d142-4e4a-bcbe-3c34dee49dcd",
+      "uuid": "54e020c4-e2e5-4e23-936e-8b5795699df8",
+      "rawTextureUuid": "cf92aa2b-7c80-444a-8b51-7e23052eee65",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

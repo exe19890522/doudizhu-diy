@@ -36,7 +36,7 @@ exports.createRoom = function (data, player, cb) {
 
     let room = Room(data, player);
     _roomList.push(room);
-    console.log('G-C:room = ' + room);
+    console.log('G-C:room = ' + JSON.stringify(room));
     if (cb) {
         cb(null, room.roomID);
     }
@@ -77,23 +77,3 @@ exports.joinRoom = function (data, player, cb) {
         cb('no have this room = ' + data);
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

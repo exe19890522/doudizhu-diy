@@ -3,7 +3,7 @@ cc.Class({
     extends:cc.Component,
     properties: {
         labelNode : cc.Node,
-
+        alertPrefab: cc.Prefab
     },
     onLoad(){
         this.labelList = this.labelNode.children;
@@ -19,6 +19,11 @@ cc.Class({
                 global.socket.requestJoinRoom(this.roomIDStr,(err,data)=>{
                     if (err){
                         console.log('err = ' + err);
+                        let node = cc.instantiate(this.alertPrefab);
+                        node.parent = this.node;
+                        node.getComponent('alertLabelPrefab').initWithOK(err, ()=>{
+                            this.roomIDStr = '';
+                        });
                     }else {
                         //{"data":{"bottom":10,"rate":2}}
                         console.log('join room = ' + JSON.stringify(data));
@@ -26,7 +31,7 @@ cc.Class({
                         global.playerData.rate = data.data.rate;
                         cc.director.loadScene('gameScene');
                     }
-                })
+                });
             }
 
             if (this.roomIDStr.length > 6){
@@ -49,13 +54,12 @@ cc.Class({
         }
     },
     update(dt){
-
+        //this.roomIDLabel.string = this.roomIDStr;
         for(let i = 0 ; i < this.labelList.length ; i ++){
             this.labelList[i].getComponent(cc.Label).string= '';
         }
         for(let i = 0 ; i < this.roomIDStr.length ; i ++){
             this.labelList[i].getComponent(cc.Label).string= this.roomIDStr[i];
         }
-        //this.roomIDLabel.string = this.roomIDStr;
     }
 });

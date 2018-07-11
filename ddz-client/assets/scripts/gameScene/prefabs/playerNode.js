@@ -1,4 +1,4 @@
-import global from './../global'
+import global from './../../global'
 //const global = require("./../../global");
 cc.Class({
     extends: cc.Component,
@@ -76,6 +76,7 @@ cc.Class({
             if (detail === this.accountID) {
                 for (let i = 0 ; i < 3 ; i ++) {
                     this.pushOneCard ();
+                    console.log('此处添加三张底牌detail=' + detail);
                 }
             }
         });
@@ -86,7 +87,7 @@ cc.Class({
                     cards:cards
             }*/
 
-            if (detail.accountID === this.accountID && global.playerData.accountID) {
+            if (detail.accountID === this.accountID && this.accountID !== global.playerData.accountID) {
                 this.playerPushCard(detail.cards);
             }
         });
@@ -114,7 +115,7 @@ cc.Class({
         });
         this.node.on('player_ready', (event) => {
             let detail = event.detail;
-            console.log('player ready detail =' + detail);
+            console.log('玩家准备player ready detail =' + detail);
             if (detail === this.accountID) {
                 this.readyIcon.active = true;
             }
@@ -161,7 +162,7 @@ cc.Class({
         for (let i = 0 ; i < cardsData.length ; i ++) {
             let card = cc.instantiate(this.cardPrefab);
             card.parent = this.pushCardNode;
-            card.scale = 0.4;
+            card.scale = 0.25;
             let height = card.height;
             card.y = (cardsData.length - 1 ) * 0.5 * height * 0.4 * 0.3 - i * height * 0.4 * 0.3;
             card.getComponent('card').showCard(cardsData[i])
@@ -180,7 +181,7 @@ cc.Class({
             let card = this.cardList[i];
             let height = card.height;
             card.y = (this.cardList.length - 1) * 0.5 * height * 0.4 * 0.3 - height * 0.4 * 0.3 * i;
-
+            console.log('重新调整手牌的位置card.y=' + card.y);
         }
     }
 });

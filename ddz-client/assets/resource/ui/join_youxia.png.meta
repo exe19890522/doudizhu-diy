@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "797cc8a8-a4d1-4c9e-82df-567651063653",
+  "uuid": "2737abb3-97c4-490c-ac4f-f7f6d9263e6c",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "join_youxia": {
       "ver": "1.0.3",
-      "uuid": "0464ac0c-a774-46d7-9536-561676aeac1a",
-      "rawTextureUuid": "797cc8a8-a4d1-4c9e-82df-567651063653",
+      "uuid": "e9607d10-17a3-44be-b3d4-63d65b8219db",
+      "rawTextureUuid": "2737abb3-97c4-490c-ac4f-f7f6d9263e6c",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

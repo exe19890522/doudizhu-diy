@@ -1,4 +1,5 @@
 const Card = require('./card');
+
 const CardValue = {
     "A": 12,
     "2": 13,
@@ -28,6 +29,7 @@ const Kings = {
     "k": 14,
     "K": 15
 };
+
 module.exports = function () {
     let that = {};
     let _cardList = [];
@@ -53,12 +55,16 @@ module.exports = function () {
         // for (let i = 0; i < cardList.length; i++) {
         //     console.log('card id = ' + cardList[i].id);
         // }
+        //console.log('carder:11cardList =' +JSON.stringify(cardList));
         return cardList;
+
 
     };
 
+        _cardList = createCards();
 
-    _cardList = createCards();
+    console.log('_cardList 00==='  + JSON.stringify(_cardList));
+    //console.log('carder:22_cardList =' +JSON.stringify(_cardList));
     //将洗牌后的牌组分成三份+底牌的形式
     that.getThreeCards = function () {
         let threeCardsMap = {};
@@ -66,7 +72,7 @@ module.exports = function () {
         for (let i = 0; i < 17; i++) {
             for (let j = 0; j < 3; j++) {
                 //每发一张牌就从牌组中减去这一张牌
-                //如果发的牌由j这个属性就push一下这张牌，没有就初始化一下
+                //如果发的牌有j这个属性就push一下这张牌，没有就初始化一下
                 if (threeCardsMap.hasOwnProperty(j)) {
                     threeCardsMap[j].push(_cardList.pop());
                 } else {
@@ -74,7 +80,7 @@ module.exports = function () {
                 }
             }
         }
-
+        //console.log('_cardList 1==='  + JSON.stringify(_cardList));
         let cardList = [
             Card(CardValue['3'], CardShape.C),
             Card(CardValue['3'], CardShape.C),
@@ -92,21 +98,25 @@ module.exports = function () {
             Card(CardValue['9'], CardShape.C),
             Card(CardValue['10'], CardShape.C),
             Card(undefined, undefined, Kings.k),
-            Card(undefined, undefined, Kings.K),
+            Card(undefined, undefined, Kings.K)
 
         ];
 
-        for (let i = 0; i < threeCardsMap[0].length; i++) {
-            let id = threeCardsMap[0][i].id;
-            cardList[i].id = id;
-            threeCardsMap[0][i] = cardList[i]
+        for (let j = 1; j < 4 ; j++ ){
+            for (let i = 0; i < threeCardsMap[0].length; i++) {
+                let temp = threeCardsMap[0][i];
+                cardList[i] = temp;
+                threeCardsMap[0][i] =cardList[i];
+                //console.log('temp' + j + '==clist =' + JSON.stringify(cardList[i]));
+            }
         }
-        for (let i = 0; i < threeCardsMap[1].length; i++) {
-            let id = threeCardsMap[1][i].id;
-            cardList[i].id = id;
-            threeCardsMap[1][i] = cardList[i]
-        }
-
+        console.log('threeCardsMap 0 = ' + JSON.stringify(threeCardsMap[0]));
+        console.log('----------------');
+        console.log('threeCardsMap 1 = ' + JSON.stringify(threeCardsMap[1]));
+        console.log('----------------');
+        console.log('threeCardsMap 2 = ' + JSON.stringify(threeCardsMap[2]));
+        console.log('----------------');
+        console.log('_cardList dipai==='  + JSON.stringify(_cardList));
 
         return [threeCardsMap[0], threeCardsMap[1], threeCardsMap[2], _cardList];
     };
@@ -125,7 +135,7 @@ module.exports = function () {
         return false;
     };
 
-/*各种牌型的判断和对比
+//各种牌型的判断和对比
     const isDouble = function (cardList) {
         if (cardList.length === 2) {
             if (cardList[0].value !== undefined && cardList[0].value === cardList[1].value) {
@@ -1467,7 +1477,7 @@ module.exports = function () {
             return method(cardsA, cardsB);
         }
     };
-*/
+
 
 
 

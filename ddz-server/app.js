@@ -21,15 +21,15 @@ myDB.getPlayerInfoWithAccountID('10000',(err, data)=>{
         console.log('data = ' + JSON.stringify(data));
     }
 });*/
-
+myDB.getPlayerInfoWithUniqueID('100000', (err, data) => {
+    console.log('data = ' + JSON.stringify(data));
+});
 app.on('connection', function (socket) {
     console.log('a  user has connect');
     socket.emit('connection','connection success');
-    socket.on('notify',(notifyData)=>{
+    socket.on('notify',(notifyData) => {
         console.log('app.js:notify = ' + JSON.stringify(notifyData));
         //socket.emit('notify',{callBackIndex:data.callBackIndex,data:'login success'});
-        let uniqueID = notifyData.data.uniqueID;
-        console.log('app.js:1111uniqueID = '+uniqueID);
         switch (notifyData.type) {
             case 'login': //login
                 let uniqueID = notifyData.data.uniqueID;
@@ -64,7 +64,7 @@ app.on('connection', function (socket) {
                             }, socket,callBackIndex);
                         }else {
                             console.log('app.js:createPlayerInfo data = ' + JSON.stringify(data));
-                            gameController.createPlayer(data[0],socket);  //因为这里是只有一列数据的列表
+                            gameController.createPlayer(data[0],socket, callBackIndex);  //因为这里是只有一列数据的列表
                         }
                     }
             });
@@ -75,20 +75,3 @@ app.on('connection', function (socket) {
         //console.log('app.js:notify = ++++++++');
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

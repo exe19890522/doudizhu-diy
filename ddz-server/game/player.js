@@ -93,13 +93,13 @@ module.exports = function (spec, socket, cbIndex, gameContorller) {
                     });
                 }
                 break;
-
             case 'rob_state':
                 if (_room){
                     _room.playerRobStateMaster(that, notifyData.data);
                 }
-                break;
 
+
+                break;
         case 'myself_push_card':
             if (_room){
                 _room.playerPushCard(that, notifyData.data, (err, data)=>{
@@ -138,26 +138,26 @@ module.exports = function (spec, socket, cbIndex, gameContorller) {
     that.sendGameStart = function () {
         notify('game_start', {}, null);
     };
-
    that.sendChangeHouseManager = function (data) {
        notify('change_house_manager', data, null);
    };
-
-
    that.sendPushCard = function (cards) {
        that.cards = cards;
        notify('push_card', cards, null);
    };
-
    that.sendPlayerCanRobMaster = function (data) {
        notify('can_rob_master', data, null);
    };
-
     that.sendPlayerRobStateMaster = function (accountID, value) {
         notify('player_rob_state', {accountID: accountID, value: value}, null);
     };
 
     that.sendChangeMaster = function (player, cards) {
+        if (that.accountID  === player.accountID){ //复制代码段
+            for (let i = 0 ; i < cards.length ; i ++){
+                this.cards.push(cards[i]);
+            }
+        }//复制代码段
         notify('change_master', player.accountID);
     };
     that.sendShowBottomCard = function (data) {
